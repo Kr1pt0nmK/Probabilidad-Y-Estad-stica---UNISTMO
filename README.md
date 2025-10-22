@@ -1,5 +1,17 @@
-# Probabilidad-Y-Estad-stica---UNISTMO
-# 📊 Calculadora de Probabilidad y Estadística
+## 🧑‍💻 Autor
+
+Este proyecto fue diseñado y desarrollado por:
+
+* **[Jared López Toledo]**
+    * GitHub: `[@Kr1pt0nmK](https://github.com/Kr1pt0nmK)`
+    * LinkedIn: `[Jared López Toledo]( https://www.linkedin.com/in/jared-l%C3%B3pez-toledo-795aa4204/ )`
+
+## 🎓 Contexto Académico
+
+Este software es el proyecto final (o parcial) para la materia de **Probabilidad y Estadística** en la [Nombre de tu Universidad].
+
+* **Carrera:** Ingeniería en Computación
+* **Profesor/a:** [Nombre de tu Profesor/a] (Esto es opcional, pero es un buen gesto profesional)# 📊 Calculadora de Probabilidad y Estadística
 
 Este proyecto es una aplicación web interactiva creada con Vue.js para realizar cálculos estadísticos básicos y generar distribuciones de frecuencia, replicando y mejorando las funcionalidades de un análisis hecho en Excel.
 

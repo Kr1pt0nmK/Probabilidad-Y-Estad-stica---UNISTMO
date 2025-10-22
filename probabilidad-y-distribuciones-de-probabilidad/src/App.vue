@@ -60,6 +60,20 @@ const {
         </v-row>
       </v-container>
     </v-main>
+
+    <v-footer app :elevation="2" class="py-3">
+          <span class="text-medium-emphasis">
+            &copy; {{ new Date().getFullYear() }} — Hecho por **[Jared López Toledo]**
+          </span>
+          
+          <v-spacer></v-spacer> <v-btn
+            icon="mdi-github"
+            variant="plain"
+            href="https://github.com/Kr1pt0nmK/Probabilidad-Y-Estad-stica---UNISTMO.git"
+            target="_blank"
+          ></v-btn>
+
+    </v-footer>    
   </v-app>
 </template>
 
