@@ -1,16 +1,20 @@
 <script setup>
 import { ref } from 'vue'
+// 1. Importar todos los componentes
 import DataInput from './components/DataInput.vue'
+import StatsSummary from './components/StatsSummary.vue'
+import FrequencyTable from './components/FrequencyTable.vue'
 
-// 1. Importamos nuestro "cerebro"
+// 2. Importamos nuestro "cerebro"
 import { useStatistics } from './composables/useStatistics.js'
 
-// 2. Esta es la variable donde se guarda el texto del textarea
+// 3. Esta es la variable donde se guarda el texto del textarea
 const rawData = ref('')
 
-// 3. ¡Aquí ocurre la magia!
+// 4. ¡Aquí ocurre la magia!
 //    Pasamos la variable reactiva 'rawData' a nuestro composable...
 //    ...y nos regresa todos los cálculos (que también son reactivos)
+//    Obtener TODOS los cálculos de nuestro composable
 const {
   n,
   min,
@@ -18,7 +22,10 @@ const {
   rango,
   promedio,
   varianza,
-  desvStd
+  desvStd,
+  m_numClases,
+  anchoClase,
+  frequencyTable // <-- La nueva tabla
 } = useStatistics(rawData)
 
 </script>
@@ -28,47 +35,29 @@ const {
     <h1>📊 Calculadora de Estadística</h1>
   </header>
 
-  <main>
+<main>
     <DataInput v-model="rawData" />
 
-    <div class="results">
-      <h2>2. Resumen Estadístico</h2>
-      <ul>
-        <li>
-          <strong>n (conteo)</strong>
-          <span>{{ n }}</span>
-        </li>
-        <li>
-          <strong>Min</strong>
-          <span>{{ min.toFixed(4) }}</span>
-        </li>
-        <li>
-          <strong>Max</strong>
-          <span>{{ max.toFixed(4) }}</span>
-        </li>
-        <li>
-          <strong>Rango</strong>
-          <span>{{ rango.toFixed(4) }}</span>
-        </li>
-        <li>
-          <strong>Promedio (Media)</strong>
-          <span>{{ promedio.toFixed(4) }}</span>
-        </li>
-        <li>
-          <strong>Varianza (muestral)</strong>
-          <span>{{ varianza.toFixed(8) }}</span>
-        </li>
-        <li>
-          <strong>Desv. Estándar</strong>
-          <span>{{ desvStd.toFixed(8) }}</span>
-        </li>
-      </ul>
+    <div class="results-panel">
+      <StatsSummary
+        :n="n"
+        :min="min"
+        :max="max"
+        :rango="rango"
+        :promedio="promedio"
+        :varianza="varianza"
+        :desvStd="desvStd"
+        :m_numClases="m_numClases"
+        :anchoClase="anchoClase"
+      />
+      
+      <FrequencyTable :table-data="frequencyTable" />
     </div>
   </main>
 </template>
 
 <style>
-/* ... (los estilos de 'body', 'header', 'main' que ya tenías) ... */
+/* Estilos Globales (sin cambios) */
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   background-color: #f4f4f9;
@@ -83,52 +72,28 @@ header {
   color: #2c3e50;
 }
 
+/* Layout principal actualizado */
 main {
-  max-width: 900px;
+  max-width: 1200px; /* Un poco más ancho para la tabla */
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr 1.5fr; /* Le di más espacio a los resultados */
+  grid-template-columns: 1fr 2fr; /* Columna de input más pequeña */
   gap: 2rem;
 }
 
-/* Estilos para la nueva tarjeta de resultados */
-.results {
-  background-color: #fff;
-  padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-}
-
-.results h2 {
-  margin-top: 0;
-}
-
-.results ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.results li {
+/* Este es el contenedor de la columna derecha, 
+  no necesita estilos especiales por ahora
+*/
+.results-panel {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.75rem 0;
-  border-bottom: 1px solid #eee;
+  flex-direction: column;
+  gap: 0; /* Los componentes ya tienen su propio margen/padding */
 }
 
-.results li:last-child {
-  border-bottom: none;
-}
-
-.results li strong {
-  color: #555;
-}
-
-.results li span {
-  font-weight: 600;
-  font-family: monospace;
-  font-size: 1.1rem;
-  color: #007bff; /* Un color para destacar */
+/* Estilos para pantallas más pequeñas */
+@media (max-width: 900px) {
+  main {
+    grid-template-columns: 1fr; /* Una sola columna */
+  }
 }
 </style>
