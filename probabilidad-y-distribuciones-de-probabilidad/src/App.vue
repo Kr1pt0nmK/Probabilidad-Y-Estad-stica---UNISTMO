@@ -4,6 +4,7 @@ import { ref } from 'vue'
 import DataInput from './components/DataInput.vue'
 import StatsSummary from './components/StatsSummary.vue'
 import FrequencyTable from './components/FrequencyTable.vue'
+import HistogramChart from './components/HistogramChart.vue'
 
 // 2. Importamos nuestro "cerebro"
 import { useStatistics } from './composables/useStatistics.js'
@@ -54,6 +55,8 @@ const {
       />
       
       <FrequencyTable :table-data="frequencyTable" />
+
+      <HistogramChart :table-data="frequencyTable" />
     </div>
   </main>
 </template>
