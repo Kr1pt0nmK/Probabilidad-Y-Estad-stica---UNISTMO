@@ -34,7 +34,30 @@ export function useStatistics(rawDataRef) {
   })
   const desvStd = computed(() => Math.sqrt(varianza.value))
 
-  // 3. CÁLCULOS PARA LA TABLA DE FRECUENCIAS (¡NUEVO!)
+//Cálculo de Curtosis (Muestral, como en Excel)
+  const curtosis = computed(() => {
+    // Se necesita n > 3 para esta fórmula
+    if (n.value < 4) return 0 
+    
+    const n_ = n.value
+    const mean = promedio.value
+    const s = desvStd.value
+    
+    // Suma de ((x - media) / s)^4
+    const sumFourthPowerDev = dataArray.value.reduce((acc, val) => {
+      return acc + Math.pow((val - mean) / s, 4)
+    }, 0)
+
+    // Fórmula de Curtosis Muestral (G2) que usa Excel
+    const term1 = (n_ * (n_ + 1)) / ((n_ - 1) * (n_ - 2) * (n_ - 3))
+    const term2 = (3 * Math.pow(n_ - 1, 2)) / ((n_ - 2) * (n_ - 3))
+    
+    const g2 = (term1 * sumFourthPowerDev) - term2
+    return g2
+  })
+
+
+  // 3. CÁLCULOS PARA LA TABLA DE FRECUENCIAS
 
   // m (Número de clases) - Regla de Sturges
   // (Como en tu Excel: 1 + 3.3 * log10(n))
@@ -106,8 +129,9 @@ export function useStatistics(rawDataRef) {
     promedio,
     varianza,
     desvStd,
-    m_numClases, // <-- NUEVO
-    anchoClase,  // <-- NUEVO
-    frequencyTable // <-- NUEVO
+    curtosis,
+    m_numClases,
+    anchoClase,
+    frequencyTable
   }
 }

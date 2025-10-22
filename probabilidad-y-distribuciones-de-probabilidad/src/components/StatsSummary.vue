@@ -7,6 +7,7 @@ defineProps({
   promedio: Number,
   varianza: Number,
   desvStd: Number,
+  curtosis: Number,
   m_numClases: Number,
   anchoClase: Number
 })
@@ -43,6 +44,10 @@ defineProps({
       <li>
         <strong>Desv. Estándar</strong>
         <span>{{ desvStd.toFixed(8) }}</span>
+      </li>
+      <li>
+        <strong>Curtosis (Exceso)</strong>
+        <span>{{ curtosis.toFixed(8) }}</span>
       </li>
       <li class="divider">
         <strong>m (clases Sturges)</strong>

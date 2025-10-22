@@ -23,6 +23,7 @@ const {
   promedio,
   varianza,
   desvStd,
+  curtosis,
   m_numClases,
   anchoClase,
   frequencyTable // <-- La nueva tabla
@@ -47,6 +48,7 @@ const {
         :promedio="promedio"
         :varianza="varianza"
         :desvStd="desvStd"
+        :curtosis="curtosis"
         :m_numClases="m_numClases"
         :anchoClase="anchoClase"
       />
