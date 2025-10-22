@@ -54,7 +54,7 @@ Para iniciar el servidor de desarrollo local (generalmente en `http://localhost:
 npm run dev
 ```
 
-### Temas Cubiertos por el Proyecto
+### 📚 Temas Cubiertos por el Proyecto
 
 Este programa está diseñado para cubrir los siguientes temas del plan de estudios, correspondientes a la unidad **"1. Estadística Descriptiva con Datos Agrupados y No Agrupados"**:
 
