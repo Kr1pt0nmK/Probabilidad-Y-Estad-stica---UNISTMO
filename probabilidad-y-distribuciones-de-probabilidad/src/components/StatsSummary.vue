@@ -8,6 +8,11 @@ defineProps({
   varianza: Number,
   desvStd: Number,
   curtosis: Number,
+  Q1: Number,
+  Q2_Mediana: Number,
+  Q3: Number,
+  P10: Number,
+  P90: Number,
   m_numClases: Number,
   anchoClase: Number
 })
@@ -49,8 +54,30 @@ defineProps({
         <strong>Curtosis (Exceso)</strong>
         <span>{{ curtosis.toFixed(8) }}</span>
       </li>
+
       <li class="divider">
-        <strong>m (clases Sturges)</strong>
+        <strong>Cuartil 1 (Q1 / P25)</strong>
+        <span>{{ Q1.toFixed(4) }}</span>
+      </li>
+      <li>
+        <strong>cuartil 2 (Q2_Mediana)</strong>
+        <span>{{ Q2_Mediana.toFixed(4) }}</span>
+      </li>
+      <li>
+        <strong>Cuartil 3 (Q3 / P75)</strong>
+        <span>{{ Q3.toFixed(4) }}</span>
+      </li>
+      <li>
+        <strong>Percentil 10 (D1)</strong>
+        <span>{{ P10.toFixed(4) }}</span>
+      </li>
+      <li>
+        <strong>Percentil 90 (D9)</strong>
+        <span>{{ P90.toFixed(4) }}</span>
+      </li>
+
+      <li class="divider">
+        <strong>m</strong>
         <span>{{ m_numClases.toFixed(8) }} (aprox. {{ Math.round(m_numClases) }})</span>
       </li>
       <li>

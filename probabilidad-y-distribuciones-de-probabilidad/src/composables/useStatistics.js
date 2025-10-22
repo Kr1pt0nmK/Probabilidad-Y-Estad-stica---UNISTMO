@@ -34,7 +34,7 @@ export function useStatistics(rawDataRef) {
   })
   const desvStd = computed(() => Math.sqrt(varianza.value))
 
-//Cálculo de Curtosis (Muestral, como en Excel)
+  //Cálculo de Curtosis (Muestral, como en Excel)
   const curtosis = computed(() => {
     // Se necesita n > 3 para esta fórmula
     if (n.value < 4) return 0 
@@ -56,7 +56,45 @@ export function useStatistics(rawDataRef) {
     return g2
   })
 
+  // -------------------------------------------------
+  // CÁLCULO DE CUANTILES (PERCENTILES)
+  // -------------------------------------------------
 
+  // Helper function para Percentil (Interpolación Lineal - como PERCENTIL.INC de Excel)
+  const getPercentile = (p) => {
+    // p es el percentil (ej. 0.25 para Q1)
+    if (n.value === 0) return 0
+    if (p <= 0) return min.value
+    if (p >= 1) return max.value
+
+    const data = dataArray.value // Nuestro array ya está ordenado
+    
+    // 1. Encontrar la posición (índice 0-based)
+    const k = (n.value - 1) * p
+    const i = Math.floor(k) // Parte entera del índice
+    const f = k - i         // Parte fraccional
+    
+    // 2. Interpolar
+    // Si f=0, el índice es exacto.
+    // Si f>0, interpolamos entre data[i] y data[i+1]
+    if (f === 0) {
+      return data[i]
+    } else {
+      return data[i] + f * (data[i + 1] - data[i])
+    }
+  }
+
+  // --- Cuartiles ---
+  const Q1 = computed(() => getPercentile(0.25))
+  const Q2_Mediana = computed(() => getPercentile(0.50)) // ¡Esta es la Mediana!
+  const Q3 = computed(() => getPercentile(0.75))
+
+  // --- Deciles y Percentiles (Ejemplos) ---
+  // D1 es P10, D9 es P90
+  const P10 = computed(() => getPercentile(0.10))
+  const P90 = computed(() => getPercentile(0.90))
+
+// -------------------------------------------------  
   // 3. CÁLCULOS PARA LA TABLA DE FRECUENCIAS
 
   // m (Número de clases) - Regla de Sturges
@@ -130,6 +168,11 @@ export function useStatistics(rawDataRef) {
     varianza,
     desvStd,
     curtosis,
+    Q1,
+    Q2_Mediana,
+    Q3,
+    P10,
+    P90,
     m_numClases,
     anchoClase,
     frequencyTable

@@ -25,6 +25,11 @@ const {
   varianza,
   desvStd,
   curtosis,
+  Q1,
+  Q2_Mediana,
+  Q3,
+  P10,
+  P90,
   m_numClases,
   anchoClase,
   frequencyTable // <-- La nueva tabla
@@ -50,6 +55,11 @@ const {
         :varianza="varianza"
         :desvStd="desvStd"
         :curtosis="curtosis"
+        :Q1="Q1"
+        :Q2_Mediana="Q2_Mediana"
+        :Q3="Q3"
+        :P10="P10"
+        :P90="P90"
         :m_numClases="m_numClases"
         :anchoClase="anchoClase"
       />
