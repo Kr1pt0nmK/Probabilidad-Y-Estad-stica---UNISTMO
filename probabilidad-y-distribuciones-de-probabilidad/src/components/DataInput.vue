@@ -1,41 +1,27 @@
 <script setup>
-// defineModel nos permite conectar este componente con v-model desde App.vue
 const model = defineModel()
 </script>
 
 <template>
-  <div class="input-card">
-    <h2>1. Ingresa tus Datos</h2>
-    <p>Pega tu conjunto de números (separados por espacio, coma o salto de línea).</p>
-    
-    <textarea
-      v-model="model"
-      rows="20"
-      placeholder="15.8 16.3 15.9 ...&#10;16.1 16.2 15.9 ...&#10;16.3 16.2 16.4 ..."
-    ></textarea>
-  </div>
+  <v-card>
+    <v-card-title>1. Ingresa tus Datos</v-card-title>
+    <v-card-subtitle>
+      Pega tu conjunto de números (separados por espacio, coma o salto de línea).
+    </v-card-subtitle>
+
+    <v-card-text>
+      <v-textarea
+        v-model="model"
+        label="Datos"
+        rows="20"
+        variant="outlined"
+        placeholder="15.8 16.3 15.9 ...&#10;16.1 16.2 15.9 ...&#10;16.3 16.2 16.4 ..."
+        clearable
+      ></v-textarea>
+    </v-card-text>
+  </v-card>
 </template>
 
 <style scoped>
-/* 'scoped' significa que estos estilos SOLO se aplican a este componente */
-.input-card {
-  background-color: #fff;
-  padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-}
-
-h2 {
-  margin-top: 0;
-}
-
-textarea {
-  width: 100%;
-  box-sizing: border-box; /* Asegura que el padding no desborde el ancho */
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 0.5rem;
-  font-family: monospace;
-  font-size: 1rem;
-}
+/* Borramos todo el CSS 'scoped'. Vuetify se encarga. */
 </style>

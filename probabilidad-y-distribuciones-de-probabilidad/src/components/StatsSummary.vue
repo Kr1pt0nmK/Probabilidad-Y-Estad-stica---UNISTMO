@@ -19,123 +19,122 @@ defineProps({
 </script>
 
 <template>
-  <div class="stats-summary">
-    <h2>2. Resumen Estadístico</h2>
-    <ul v-if="n > 0">
-      <li>
-        <strong>n (conteo)</strong>
-        <span>{{ n }}</span>
-      </li>
-      <li>
-        <strong>Min</strong>
-        <span>{{ min.toFixed(4) }}</span>
-      </li>
-      <li>
-        <strong>Max</strong>
-        <span>{{ max.toFixed(4) }}</span>
-      </li>
-      <li>
-        <strong>Rango</strong>
-        <span>{{ rango.toFixed(4) }}</span>
-      </li>
-      <li>
-        <strong>Promedio (Media)</strong>
-        <span>{{ promedio.toFixed(4) }}</span>
-      </li>
-      <li>
-        <strong>Varianza (muestral)</strong>
-        <span>{{ varianza.toFixed(8) }}</span>
-      </li>
-      <li>
-        <strong>Desv. Estándar</strong>
-        <span>{{ desvStd.toFixed(8) }}</span>
-      </li>
-      <li>
-        <strong>Curtosis (Exceso)</strong>
-        <span>{{ curtosis.toFixed(8) }}</span>
-      </li>
+  <v-card>
+    <v-card-title>2. Resumen Estadístico</v-card-title>
+    <v-card-text>
+      
+      <v-list v-if="n > 0" lines="one" density="compact">
+        
+        <v-list-item title="n (conteo)">
+          <template v-slot:append>
+            <span class="stat-value">{{ n }}</span>
+          </template>
+        </v-list-item>
+        
+        <v-list-item title="Min">
+          <template v-slot:append>
+            <span class="stat-value">{{ min.toFixed(4) }}</span>
+          </template>
+        </v-list-item>
 
-      <li class="divider">
-        <strong>Cuartil 1 (Q1 / P25)</strong>
-        <span>{{ Q1.toFixed(4) }}</span>
-      </li>
-      <li>
-        <strong>cuartil 2 (Q2_Mediana)</strong>
-        <span>{{ Q2_Mediana.toFixed(4) }}</span>
-      </li>
-      <li>
-        <strong>Cuartil 3 (Q3 / P75)</strong>
-        <span>{{ Q3.toFixed(4) }}</span>
-      </li>
-      <li>
-        <strong>Percentil 10 (D1)</strong>
-        <span>{{ P10.toFixed(4) }}</span>
-      </li>
-      <li>
-        <strong>Percentil 90 (D9)</strong>
-        <span>{{ P90.toFixed(4) }}</span>
-      </li>
+        <v-list-item title="Max">
+          <template v-slot:append>
+            <span class="stat-value">{{ max.toFixed(4) }}</span>
+          </template>
+        </v-list-item>
 
-      <li class="divider">
-        <strong>m</strong>
-        <span>{{ m_numClases.toFixed(8) }} (aprox. {{ Math.round(m_numClases) }})</span>
-      </li>
-      <li>
-        <strong>Ancho de Clase (w)</strong>
-        <span>{{ anchoClase.toFixed(8) }}</span>
-      </li>
-    </ul>
-    <p v-else>Ingresa datos para ver el resumen.</p>
-  </div>
+        <v-list-item title="Rango">
+          <template v-slot:append>
+            <span class="stat-value">{{ rango.toFixed(4) }}</span>
+          </template>
+        </v-list-item>
+
+        <v-list-item title="Promedio (Media)">
+          <template v-slot:append>
+            <span class="stat-value">{{ promedio.toFixed(4) }}</span>
+          </template>
+        </v-list-item>
+
+        <v-divider class="my-2"></v-divider>
+
+        <v-list-item title="Varianza (muestral)">
+          <template v-slot:append>
+            <span class="stat-value">{{ varianza.toFixed(8) }}</span>
+          </template>
+        </v-list-item>
+
+        <v-list-item title="Desv. Estándar">
+          <template v-slot:append>
+            <span class="stat-value">{{ desvStd.toFixed(8) }}</span>
+          </template>
+        </v-list-item>
+
+        <v-list-item title="Curtosis (Exceso)">
+          <template v-slot:append>
+            <span class="stat-value">{{ curtosis.toFixed(8) }}</span>
+          </template>
+        </v-list-item>
+
+        <v-divider class="my-2"></v-divider>
+
+        <v-list-item title="Cuartil 1 (Q1 / P25)">
+          <template v-slot:append>
+            <span class="stat-value">{{ Q1.toFixed(4) }}</span>
+          </template>
+        </v-list-item>
+
+        <v-list-item title="Cuartil 2 (Mediana)">
+          <template v-slot:append>
+            <span class="stat-value">{{ Q2_Mediana.toFixed(4) }}</span>
+          </template>
+        </v-list-item>
+
+        <v-list-item title="Cuartil 3 (Q3 / P75)">
+          <template v-slot:append>
+            <span class="stat-value">{{ Q3.toFixed(4) }}</span>
+          </template>
+        </v-list-item>
+        
+        <v-list-item title="Percentil 10 (D1)">
+          <template v-slot:append>
+            <span class="stat-value">{{ P10.toFixed(4) }}</span>
+          </template>
+        </v-list-item>
+        
+        <v-list-item title="Percentil 90 (D9)">
+          <template v-slot:append>
+            <span class="stat-value">{{ P90.toFixed(4) }}</span>
+          </template>
+        </v-list-item>
+
+        <v-divider class="my-2"></v-divider>
+
+        <v-list-item title="m (clases Sturges)">
+          <template v-slot:append>
+            <span class="stat-value">{{ m_numClases.toFixed(8) }} (aprox. {{ Math.round(m_numClases) }})</span>
+          </template>
+        </v-list-item>
+
+        <v-list-item title="Ancho de Clase (w)">
+          <template v-slot:append>
+            <span class="stat-value">{{ anchoClase.toFixed(8) }}</span>
+          </template>
+        </v-list-item>
+
+      </v-list>
+      
+      <v-alert v-else type="info" variant="tonal" border="start">
+        Ingresa datos para ver el resumen.
+      </v-alert>
+
+    </v-card-text>
+  </v-card>
 </template>
 
 <style scoped>
-.stats-summary {
-  background-color: #fff;
-  padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-}
-
-h2 {
-  margin-top: 0;
-}
-
-ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-li {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.75rem 0;
-  border-bottom: 1px solid #eee;
-  flex-wrap: wrap; /* Para pantallas pequeñas */
-}
-
-li:last-child {
-  border-bottom: none;
-}
-
-li.divider {
-  border-top: 2px dashed #007bff;
-  padding-top: 0.75rem;
-  margin-top: 0.5rem;
-}
-
-li strong {
-  color: #555;
-  padding-right: 1rem;
-}
-
-li span {
-  font-weight: 600;
-  font-family: monospace;
-  font-size: 1.1rem;
-  color: #007bff;
-  text-align: right;
+/* Usamos este estilo para que los números sigan siendo monospace */
+.stat-value {
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-weight: bold;
 }
 </style>
