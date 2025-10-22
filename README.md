@@ -74,3 +74,14 @@ Este programa está diseñado para cubrir los siguientes temas del plan de estud
     * Generación de un Histograma de frecuencias.
 
 *(Nota: Los cálculos del Tema 2: Probabilidad, como el Teorema de Bayes o técnicas de conteo, están fuera del alcance de esta herramienta en particular).*
+
+### Nota sobre los Cuantiles (Deciles y Percentiles)
+
+Para mantener la interfaz limpia y resumida, la aplicación muestra listas completas de los Cuartiles y Deciles.
+
+Se tomó la decisión de **no incluir** una calculadora para percentiles específicos (ej. P47 o P82) para evitar complejidad innecesaria en la interfaz.
+
+Sin embargo, es importante notar que el motor de cálculo **está basado en una función de percentil universal** (`PERCENTIL.INC` de Excel). Los Cuartiles y Deciles mostrados son, de hecho, percentiles específicos:
+
+* **Cuartiles:** Son P25 (`Q1`) y P75 (`Q3`).
+* **Deciles:** Son P10 (`D1`), P20 (`D2`), P30 (`D3`), etc.
